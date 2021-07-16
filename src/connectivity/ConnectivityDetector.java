@@ -39,6 +39,23 @@ public class ConnectivityDetector extends SparqlQuerier{
 		this.countConnectivity.put(qs.get("k").asLiteral().getInt(),  qs.get("nbk").asLiteral().getInt());
 		return true;
 	}
+	
+	public void testInsert() {
+		String queryStr = "PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n"
+				+ "PREFIX p: <http://www.wikidata.org/prop/>\n"
+				+ "PREFIX wd: <http://www.wikidata.org/entity/>\n"
+				+ "INSERT DATA {?s ?p ?o}\n"
+				+ "WHERE\n"
+				+ "{?s wdt:P31 wd:Q47386.\n"
+				+ " ?p wdt:P31 wdt:P509.\n"
+				+ " ?o wdt:P31 wd:Q9300679.}";
+		this.setQuery(queryStr);
+		try {
+			this.execute();
+		} catch (InterruptedException e) {
+			System.out.println("Error : "+e);
+		}
+	}
 
 	public void detect(String prop, String restrictionSubj, String restrictionObj) {
 
@@ -50,6 +67,27 @@ public class ConnectivityDetector extends SparqlQuerier{
 				"SELECT ?o (count(?s) as ?k) " + "WHERE {" +
 				"?s <"+prop+"> ?o."+ restrictionSubj + " " +restrictionObj+" } " +
 				"GROUP BY (?o) }" + 
+				"GROUP BY (?k) ";
+
+		this.setQuery(queryStr);
+		try {
+			this.execute();
+		} catch (InterruptedException e) {
+			System.out.println("Error : "+e);
+		}
+	}
+	
+	//Detect subject connectivity
+	public void detectSubj(String prop, String restrictionSubj, String restrictionObj) {
+
+		if(restrictionSubj.length() > 0 && restrictionSubj != null) restrictionSubj+=".";
+		if(restrictionObj.length() > 0 && restrictionObj != null) restrictionObj+=".";
+
+		String queryStr = ""
+				+ "SELECT ?k (COUNT(?k) as ?nbk) " + "WHERE {" +
+				"SELECT ?s (count(?o) as ?k) " + "WHERE {" +
+				"?s <"+prop+"> ?o."+ restrictionSubj + " " +restrictionObj+" } " +
+				"GROUP BY (?s) }" + 
 				"GROUP BY (?k) ";
 
 		this.setQuery(queryStr);

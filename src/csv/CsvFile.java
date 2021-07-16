@@ -18,17 +18,25 @@ public class CsvFile implements CsvFileInterface{
 	private File file;
 	private List<String> lines;
 	private List<String[] > data;
+	
+	private boolean verif = true;
 
 	private CsvFile() {}
 
 	public CsvFile(File file) {
 		this.file = file;
-		init();
+		if(this.file.exists()) {
+			init();
+		}
+		else this.verif = false;
 	}
 
 	public CsvFile(String path) {
 		this.file = CsvFileHelper.getResource(path);
-		init();
+		if(this.file.exists()) {
+			init();
+		}
+		else this.verif = false;
 	}
 
 	public static void fileMerge(String f1, String f2, String filename) {
@@ -44,13 +52,19 @@ public class CsvFile implements CsvFileInterface{
 
 	private void init() {
 		lines = CsvFileHelper.readFile(file);
-
-		data = new ArrayList<String[] >(lines.size());
-		String sep = new Character(SEPARATOR).toString();
-		for (String line : lines) {
-			String[] oneData = line.split(sep);
-			data.add(oneData);
-		}
+		if(lines.size() == 0) verif = false; 
+			else {
+				data = new ArrayList<String[] >(lines.size());
+				String sep = new Character(SEPARATOR).toString();
+				for (String line : lines) {
+					String[] oneData = line.split(sep);
+					data.add(oneData);
+				}
+			}
+	}
+	
+	public boolean exists() {
+		return this.verif;
 	}
 
 	@Override
@@ -69,6 +83,10 @@ public class CsvFile implements CsvFileInterface{
 		return lines;
 	}
 
+	public boolean getVerif() {
+		return this.verif;
+	}
+	
 	public void setLines(List<String> lines) {
 		this.lines = lines;
 	}

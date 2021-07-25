@@ -1,0 +1,41 @@
+# Frequently used queries to retrieve necessary information from Wikidata.
+
+# /!\ IMPORTANT : As an example, the queries target the Wikidata property P509 (cause of death), 
+
+
+# Returns the number of facts, the number of distinct subjects and the number of distinct objects of a property
+
+SELECT (COUNT(*) as ?nbFact) (COUNT(DISTINCT ?s) as ?nbSubjects) (COUNT(DISTINCT ?o) as ?nbObjects)
+	WHERE {
+		?s <http://www.wikidata.org/prop/direct/P509> ?o.
+	} 
+				
+
+# Returns the number of objects (nbk) with k incoming degrees for a property
+
+SELECT ?k (count(?k) as ?nbk)
+	WHERE {
+		SELECT ?o (count(?s) as ?k)
+		WHERE {
+			?s <http://www.wikidata.org/prop/direct/P509> ?o.
+      			SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+      		}
+	GROUP BY ?o   
+  	}
+GROUP BY ?k
+ORDER BY asc (?k)
+
+
+# Returns all objects (oLabel) with its connectivity (k) and class (ooLabel) 
+#by selecting only objects belonging to a specific class (here the cause of death class which has the most different connectivities)
+
+SELECT ?ooLabel ?oLabel (count(?s) as ?k)
+	WHERE {
+		?s <http://www.wikidata.org/prop/direct/P509> ?o.
+      		?o <http://www.wikidata.org/prop/direct/P31> ?oo.
+       	FILTER EXISTS { 
+       		?oo (wdt:P279*|wdt:P31) wd:Q1931388
+       	}
+      		SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+      }
+GROUP BY ?ooLabel ?oLabel

@@ -35,5 +35,10 @@
 	<classpathentry kind="lib" path="jena/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="jena/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="jena/slf4j-log4j12-1.7.25.jar"/>
+	<classpathentry kind="lib" path="json-20210307.jar" sourcepath="json-20210307.jar"/>
+	<classpathentry kind="lib" path="hadoop/hadoop-annotations-2.9.1.jar"/>
+	<classpathentry kind="lib" path="hadoop/hadoop-common-2.9.1.jar"/>
+	<classpathentry kind="lib" path="hadoop/hadoop-common-2.9.1-tests.jar"/>
+	<classpathentry kind="lib" path="hadoop/hadoop-mapreduce-client-core-2.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

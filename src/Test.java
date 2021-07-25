@@ -51,9 +51,6 @@ public class Test {
 	//This method allows to generate de bipartite graph and to create the files to generate the graphs for real and fictive data
 	public static void compute() {
 
-		String P509restrictionObj = "?o <http://www.wikidata.org/prop/direct/P31> ?oo.\n"
-				+ "                 FILTER EXISTS { ?oo (<http://www.wikidata.org/prop/direct/P279>*|<http://www.wikidata.org/prop/direct/P31>) <http://www.wikidata.org/entity/Q12136>}";
-
 		for(WDT wdt : WDT.values()) {
 
 			ConnectivityDetector cd = new ConnectivityDetector(Triplestore.WIKIDATA);
@@ -94,7 +91,7 @@ public class Test {
 
 	public static void powerLawMeasurement() {
 		for(WDT wdt : WDT.values()) {
-			
+
 			fileExists = true;
 			getRealFictiveDistrib(wdt.toString()+"_"+nbInit+"_fictive_real.csv",0);
 			if(fileExists == true) {
@@ -143,16 +140,16 @@ public class Test {
 					else if(type.equals("real")) resReal.put(k,pk);
 
 				}
-				
+
 				Map<Double, ArrayList<Double>> pk_lines_fictive = new TreeMap<Double, ArrayList<Double>>();
 				Map<Double, ArrayList<Double>> pk_lines_real = new TreeMap<Double, ArrayList<Double>>();
-				
+
 				Double minKey_fictive = 10000.0;
 				Double minKey_real = 10000.0;
-				
+
 				//Fictive data
 				for(Entry<Double, Double> mapentry : resFictive.entrySet()) {
-					
+
 					if(pk_lines_fictive.containsKey(mapentry.getValue())) {
 						ArrayList<Double> al = new ArrayList<Double>();
 						al = pk_lines_fictive.get(mapentry.getValue());
@@ -162,16 +159,16 @@ public class Test {
 						ArrayList<Double> al = new ArrayList<Double>();
 						al.add(mapentry.getKey());
 						pk_lines_fictive.put(mapentry.getValue(),al);
-						
+
 						if(mapentry.getValue() <= minKey_fictive) minKey_fictive = mapentry.getValue();
-						
+
 					}
-					
+
 				}
-				
+
 				//Real data
 				for(Entry<Double, Double> mapentry : resReal.entrySet()) {
-					
+
 					if(pk_lines_real.containsKey(mapentry.getValue())) {
 						ArrayList<Double> al = new ArrayList<Double>();
 						al = pk_lines_real.get(mapentry.getValue());
@@ -181,27 +178,27 @@ public class Test {
 						ArrayList<Double> al = new ArrayList<Double>();
 						al.add(mapentry.getKey());
 						pk_lines_real.put(mapentry.getValue(),al);
-						
+
 						if(mapentry.getValue() <= minKey_real) minKey_real = mapentry.getValue();
 					}
-					
+
 				}
-				
+
 				List<Double> k_pkmin_fictive = new ArrayList<Double>();
 				List<Double> k_pkmin_real = new ArrayList<Double>();
-				
+
 				k_pkmin_fictive = pk_lines_fictive.get(minKey_fictive);
 				k_pkmin_real = pk_lines_real.get(minKey_real);
-				
+
 				Collections.sort(k_pkmin_fictive);
 				Collections.sort(k_pkmin_real);
-				
+
 				Double kmin_pkmin_fictive = k_pkmin_fictive.get(0);
 				Double kmax_pkmin_fictive = k_pkmin_fictive.get(k_pkmin_fictive.size()-1);
-				
+
 				Double kmin_pkmin_real = k_pkmin_real.get(0);
 				Double kmax_pkmin_real = k_pkmin_real.get(k_pkmin_real.size()-1);
-				
+
 
 				buff_stats += wdt.getName()+sep+kmin_pkmin_fictive+sep+kmax_pkmin_fictive+sep+"fictive\n";
 				buff_stats += wdt.getName()+sep+kmin_pkmin_real+sep+kmax_pkmin_real+sep+"real\n";
@@ -219,7 +216,7 @@ public class Test {
 				}
 
 			}
-			
+
 		}
 	}
 

@@ -1,0 +1,33 @@
+property, kmin_pkmin, kmax_pkmin, type
+illustrator,20.0,72.0,fictive
+illustrator,21.0,156.0,real
+site of astronomical discovery,22.0,7680.0,fictive
+site of astronomical discovery,20.0,16469.0,real
+cause of death,28.0,13157.0,fictive
+cause of death,37.0,9747.0,real
+architectural style,24.0,10053.0,fictive
+architectural style,29.0,16195.0,real
+fabrication method,23.0,17841.0,fictive
+fabrication method,20.0,24279.0,real
+native language,25.0,14977.0,fictive
+native language,13.0,37173.0,real
+has works in the collection,37.0,19248.0,fictive
+has works in the collection,42.0,9251.0,real
+competition class,37.0,38211.0,fictive
+competition class,30.0,136354.0,real
+religion,33.0,48810.0,fictive
+religion,46.0,95236.0,real
+member of political party,51.0,39352.0,fictive
+member of political party,80.0,28059.0,real
+creator,150.0,5787.0,fictive
+creator,144.0,15204.0,real
+cast member,160.0,45909.0,fictive
+cast member,158.0,535.0,real
+depends on software,25.0,646.0,fictive
+depends on software,25.0,2502.0,real
+taxon range map image,5.0,5.0,fictive
+taxon range map image,6.0,70.0,real
+candidacy in election,44.0,4695.0,fictive
+candidacy in election,36.0,3319.0,real
+partner,9.0,12.0,fictive
+partner,9.0,68.0,real

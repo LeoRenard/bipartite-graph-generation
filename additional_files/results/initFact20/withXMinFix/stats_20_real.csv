@@ -1,0 +1,17 @@
+property_id,property, kmin_pkmin, kmax_pkmin, type
+P110,illustrator,21.0,156.0,real
+P65,site of astronomical discovery,20.0,16469.0,real
+P509,cause of death,37.0,9747.0,real
+P149,architectural style,29.0,16195.0,real
+P2079,fabrication method,20.0,24279.0,real
+P103,native language,13.0,37173.0,real
+P6379,has works in the collection,42.0,9251.0,real
+P2094,competition class,30.0,136354.0,real
+P140,religion,46.0,95236.0,real
+P102,member of political party,80.0,28059.0,real
+P170,creator,144.0,15204.0,real
+P161,cast member,158.0,535.0,real
+P1547,depends on software,25.0,2502.0,real
+P181,taxon range map image,6.0,70.0,real
+P3602,candidacy in election,36.0,3319.0,real
+P451,partner,9.0,68.0,real

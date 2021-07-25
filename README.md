@@ -1,6 +1,6 @@
 # bipartite-graph-generation
 
-This work, in the context of a Master 1 internship « Big Data Management and Analytics » at the University of Tours, supervised by Arnaud Soulet and Béatrice Markhoff), aims at generating a bipartite graph model for knowledge bases.
+This work, in the context of a Master 1 internship « Big Data Management and Analytics » at the University of Tours supervised by Arnaud Soulet and Béatrice Markhoff, aims at generating a bipartite graph model for knowledge bases.
 
 We rely here on Wikidata.
 
